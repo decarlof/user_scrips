@@ -69,45 +69,6 @@ def rec_full(file_name, sino_start, sino_end):
 
         # Write data as stack of TIFs.
         tomopy.io.writer.write_tiff_stack(rec, fname=output_name, start=sino_chunk_start)
-    
-
-def rec_whole(file_name):
-
-    print '\n#### Processing '+ file_name
-
-    chunks = 30 # number of data chunks for the reconstruction
-
-    f = h5py.File(file_name, "r"); 
-    nProj, nSino, nCol = f["/exchange/data"].shape
-    nSino_per_chunk = nSino/chunks
-    print "Reconstructing [%d] slices from slice [%d] to [%d] in [%d] chunks of [%d] slices each" % ((sino_end - sino_start), sino_start, sino_end, chunks, nSino_per_chunk)
-    
-    for iChunk in range(0,chunks):
-        print '\n  -- chunk # %i' % (iChunk+1)
-        sino_chunk_start = nSino_per_chunk*iChunk 
-        sino_chunk_end = nSino_per_chunk*(iChunk+1)
-        print '\n  --------> [%i, %i]' % (sino_chunk_start, sino_chunk_end)
-        
-        if sino_chunk_end > sino_end: 
-            break
-                
-        # Read HDF5 file.
-        prj, flat, dark = tomopy.io.exchange.read_aps_32id(file_name, sino=(sino_chunk_start, sino_chunk_end))
-
-        # Manage the missing angles:
-        theta  = tomopy.angles(prj.shape[0])
-        prj = np.concatenate((prj[0:miss_angles[0],:,:], prj[miss_angles[1]+1:-1,:,:]), axis=0)
-        theta = np.concatenate((theta[0:miss_angles[0]], theta[miss_angles[1]+1:-1]))
-
-        # normalize the prj
-        prj = tomopy.normalize(prj, flat, dark)
-
-        # reconstruct 
-        rec = tomopy.recon(prj, theta, center=best_center, algorithm='gridrec', emission=False)
-        
-        # Write data as stack of TIFs.
-        tomopy.io.writer.write_tiff_stack(rec, fname=output_name)
-    
 
 reconstruction_test = True
 
