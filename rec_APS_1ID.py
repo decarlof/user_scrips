@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 import tomopy
-import numpy as np
-import h5py
 
 def rec_test(file_name, sino_start, sino_end, best_center, output_name):
 
