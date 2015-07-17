@@ -28,15 +28,15 @@ def rec_test(file_name, sino_start, sino_end, best_center, output_name):
 def main():
     ##################################### Inputs ##########################################################   
     file_name = '/local/dataraid/databank/templates/dataExchange/tmp/APS_1ID_bov_ver6_0N.h5' 
-    output_name = '/local/dataraid/databank/templates/dataExchange/tmp/rec/rec_bov_ver6_0N_'
+    output_name = '/local/dataraid/databank/templates/dataExchange/tmp/rec/rec_bov_ver6_0N'
     best_center = 976.6; sino_start = 1200; sino_end = 1202; 
 
 #    file_name = '/local/dataraid/databank/templates/dataExchange/tmp/APS_1ID_bov_ver6_20N.h5' 
-#    output_name = '/local/dataraid/databank/templates/dataExchange/tmp/rec/rec_bov_ver6_20N_'
+#    output_name = '/local/dataraid/databank/templates/dataExchange/tmp/rec/rec_bov_ver6_20N'
 #    best_center = 995.4; sino_start = 1200; sino_end = 1202; 
 
 #    file_name = '/local/dataraid/databank/templates/dataExchange/tmp/APS_1ID_bov_ver6_fail.h5' 
-#    output_name = '/local/dataraid/databank/templates/dataExchange/tmp/rec/rec_bov_ver6_fail_'
+#    output_name = '/local/dataraid/databank/templates/dataExchange/tmp/rec/rec_bov_ver6_fail'
 #    best_center = 998.4; sino_start = 1200; sino_end = 1202; 
 
     rec_test(file_name, sino_start, sino_end, best_center, output_name)
