@@ -31,10 +31,6 @@ def rec_test(file_name, sino_start, sino_end):
     pl.gray()
     pl.axis('off')
     pl.imshow(rec[0])
-#    pl.figure(figsize=(10,8))    
-#    pl.imshow(rec[0])
-#    pl.axis('off')
-
     
 def rec_full(file_name, sino_start, sino_end):
 

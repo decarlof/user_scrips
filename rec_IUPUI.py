@@ -2,9 +2,7 @@
 # Recon a single slice for testing.
 import tomopy
 import numpy as np
-from scipy import ndimage
 import h5py
-import matplotlib.pylab as plt
 
 ##################################### Inputs ##########################################################
 file_name = '/local/prom04/vdeandrade/dataraid/2015_06/Anne/Cement/Cement_S3_180proj_500ms_11800eV_new_mount_5_.h5' # best_center = 1142
