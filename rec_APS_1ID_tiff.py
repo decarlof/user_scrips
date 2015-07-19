@@ -33,22 +33,22 @@ def read_log(fname):
                 nflat = int(ls[5])
     contents.close()
 
-    print "proj", prj_start, prj_start + nprj
+    print "    start end"
+    print "proj ", prj_start, prj_start + nprj
     print "flat", flat_start, flat_start + nflat
     print "dark", dark_start, dark_start + ndark
 
-def rec_test_tiff(file_name, sino_start, sino_end, best_center, output_name):
+def rec_tiff(file_name, sino_start, sino_end, best_center, output_name):
 
     print '\n#### Processing '+ file_name
-    print "Test reconstruction of slice [%d]" % sino_start
 
     start_time = time.time()
-    # Read HDF5 file.
+    # Read tiff files.
     prj, flat, dark = tomopy.io.exchange.read_aps_1id(file_name, sino=(sino_start, sino_end))
     end_time = time.time()
     uptime = end_time - start_time
     print "******************"        
-    print str(datetime.timedelta(seconds=int(uptime)))
+    print "Read time:", str(datetime.timedelta(seconds=int(uptime)))
     print "******************"        
 
     # Manage the missing angles:
@@ -58,9 +58,10 @@ def rec_test_tiff(file_name, sino_start, sino_end, best_center, output_name):
     prj = tomopy.normalize(prj, flat, dark)
     calc_center = best_center
     #calc_center = tomopy.find_center(prj, theta, emission=False, init=best_center, ind=0, tol=0.3)
-    print best_center, calc_center
+    print "Center [%d]" % calc_center
 
     # reconstruct 
+    print "Test reconstruction of slice [%d]" % sino_start
     rec = tomopy.recon(prj, theta, center=calc_center, algorithm='gridrec', emission=False)
         
     # Write data as stack of TIFs.
@@ -68,13 +69,18 @@ def rec_test_tiff(file_name, sino_start, sino_end, best_center, output_name):
 
     print "Slice saved as [%s_00000.tiff]" % output_name
 
-def rec_test_h5(file_name, sino_start, sino_end, best_center, output_name):
+def rec_h5(file_name, sino_start, sino_end, best_center, output_name):
 
     print '\n#### Processing '+ file_name
-    print "Test reconstruction of slice [%d]" % sino_start
 
+    start_time = time.time()
     # Read HDF5 file.
     prj, flat, dark = tomopy.io.exchange.read_aps_32id(file_name, sino=(sino_start, sino_end))
+    end_time = time.time()
+    uptime = end_time - start_time
+    print "******************"        
+    print "Read time:", str(datetime.timedelta(seconds=int(uptime)))
+    print "******************"        
 
     # Manage the missing angles:
     theta  = tomopy.angles(prj.shape[0], ang1=0.0, ang2=180.0)
@@ -83,9 +89,10 @@ def rec_test_h5(file_name, sino_start, sino_end, best_center, output_name):
     prj = tomopy.normalize(prj, flat, dark)
     calc_center = best_center
     #calc_center = tomopy.find_center(prj, theta, emission=False, init=best_center, ind=0, tol=0.3)
-    print best_center, calc_center
+    print "Center [%d]" % calc_center
 
     # reconstruct 
+    print "Test reconstruction of slice [%d]" % sino_start
     rec = tomopy.recon(prj, theta, center=calc_center, algorithm='gridrec', emission=False)
         
     # Write data as stack of TIFs.
@@ -102,11 +109,11 @@ def main():
     best_center = 1026; sino_start = 1000; sino_end = 1004; 
 
     read_log(file_name)
-    rec_test_tiff(file_name, sino_start, sino_end, best_center, output_name)    
+    rec_tiff(file_name, sino_start, sino_end, best_center, output_name)    
 
     file_name = '/local/dataraid/databank/dataExchange/tmp/APS_1_ID.h5'
     output_name = '/local/dataraid/databank/templates/dataExchange/tmp/rec/CAT4B_2_h5'
-    rec_test_h5(file_name, sino_start, sino_end, best_center, output_name)
+    rec_h5(file_name, sino_start, sino_end, best_center, output_name)
 
 if __name__ == "__main__":
     main()

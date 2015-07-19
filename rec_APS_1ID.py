@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import tomopy
 
-def rec_test(file_name, sino_start, sino_end, best_center, output_name):
+def rec_h5(file_name, sino_start, sino_end, best_center, output_name):
 
     print '\n#### Processing '+ file_name
     print "Test reconstruction of slice [%d]" % sino_start
@@ -39,7 +39,7 @@ def main():
 #    output_name = '/local/dataraid/databank/templates/dataExchange/tmp/rec/rec_bov_ver6_fail'
 #    best_center = 998.4; sino_start = 1200; sino_end = 1202; 
 
-    rec_test(file_name, sino_start, sino_end, best_center, output_name)
+    rec_h5(file_name, sino_start, sino_end, best_center, output_name)
 
 if __name__ == "__main__":
     main()

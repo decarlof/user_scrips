@@ -20,7 +20,7 @@ import matplotlib.pyplot as plt
 def main():
     #****************************************************************************
     file_name = '/local/dataraid/databank/dataExchange/tmp/Australian_rank3.h5'
-    output_name = '/local/dataraid/databank/dataExchange/tmp/rec/Australian_3'    
+    output_name = '/local/dataraid/databank/dataExchange/tmp/rec/Australian_rank3'    
     sino_start = 290    
     sino_end = 294    
 
