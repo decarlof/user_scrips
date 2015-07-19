@@ -17,11 +17,6 @@ Example on how to use the `xtomo_raw`_ module to read APS 1-ID TIFF raw tomograp
 .. _xtomo_raw: dataexchange.xtomo.xtomo_importer.html
 """
 
-# Data Exchange: https://github.com/data-exchange/data-exchange
-import xtomo_importer as xtomo_imp 
-import xtomo_exporter as xtomo_exp
-
-import re
 import os.path
 
 def main():
@@ -57,25 +52,9 @@ def main():
                 nflat = int(ls[5])
     contents.close()
 
-    
-   
-     
-##    # these are correct per Peter discussion
-##    prj_start = 943
-##    prj_end = 1833
-##    flat_start = 1844
-##    flat_end = 1853
-##    dark_start = 1854
-##    dark_end = 1863
-
     print "proj", prj_start, prj_start + nprj
     print "flat", flat_start, flat_start + nflat
     print "dark", dark_start, dark_start + ndark
-
-    ind_tomo = range(prj_start, prj_start + nprj)
-    ind_flat = range(flat_start, flat_start + nflat)
-    ind_dark = range(dark_start, dark_start + ndark)
-
   
 
 if __name__ == "__main__":
