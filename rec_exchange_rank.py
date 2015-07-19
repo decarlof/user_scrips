@@ -1,19 +1,18 @@
 # -*- coding: utf-8 -*-
 """
-.. module:: validateRecDataExchange2tomoPy.py
+.. module:: rec_exchange_rank.py
    :platform: Unix
-   :synopsis: validate data exchange conversion by running tomopy
-   :INPUT
-      data exchange 
+   :synopsis: Reconstruct micro-CT data stored in exchange + exchange_rank hdf5 tag 
 
-.. moduleauthor:: Francesco De Carlo <decarlof@gmail.com>
+:Author:
+  `Francesco De Carlo <mailto: decarlof@gmail.com>`_
 
-:Version: 2014.01.19
+:Organization:
+  Argonne National Laboratory, Argonne, IL 60439 USA
 
 """ 
 # tomoPy: https://github.com/tomopy/tomopy
 import tomopy 
-
 
 import matplotlib.pyplot as plt
 

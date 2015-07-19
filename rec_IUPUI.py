@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # Recon a single slice for testing.
+# tomoPy: https://github.com/tomopy/tomopy
 import tomopy
 import numpy as np
 import h5py

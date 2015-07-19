@@ -1,4 +1,17 @@
 # -*- coding: utf-8 -*-
+"""
+.. module:: rec_APS_1ID.py
+   :platform: Unix
+   :synopsis: Read and reconstruct the APS 1-ID tomography hdf5 data
+
+:Author:
+  `Francesco De Carlo <mailto: decarlof@gmail.com>`_
+
+:Organization:
+  Argonne National Laboratory, Argonne, IL 60439 USA
+
+"""
+# tomoPy: https://github.com/tomopy/tomopy
 import tomopy
 
 def rec_h5(file_name, sino_start, sino_end, best_center, output_name):

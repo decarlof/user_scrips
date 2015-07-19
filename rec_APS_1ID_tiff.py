@@ -1,4 +1,16 @@
 # -*- coding: utf-8 -*-
+"""
+.. module:: read_log_APS_1ID_tiff.py
+   :platform: Unix
+   :synopsis: Read and reconstruct the APS 1-ID tomography data as original tiff and converted hdf5
+
+:Author:
+  `Francesco De Carlo <mailto: decarlof@gmail.com>`_
+
+:Organization:
+  Argonne National Laboratory, Argonne, IL 60439 USA
+
+"""
 import tomopy
 import os.path
 import time, datetime

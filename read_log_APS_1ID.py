@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-.. module:: convert_APS_1ID.py
+.. module:: read_log_APS_1ID.py
    :platform: Unix
-   :synopsis: Convert APS 1-ID TIFF files in data exchange.
-
-Example on how to use the `xtomo_raw`_ module to read APS 1-ID TIFF raw tomographic data and save them as Data Exchange
+   :synopsis: Read the APS 1-ID tomography log file
 
 :Author:
   `Francesco De Carlo <mailto: decarlof@gmail.com>`_
@@ -12,9 +10,6 @@ Example on how to use the `xtomo_raw`_ module to read APS 1-ID TIFF raw tomograp
 :Organization:
   Argonne National Laboratory, Argonne, IL 60439 USA
 
-:Version: 2014.08.15
-
-.. _xtomo_raw: dataexchange.xtomo.xtomo_importer.html
 """
 
 import os.path

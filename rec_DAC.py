@@ -1,4 +1,17 @@
 # -*- coding: utf-8 -*-
+"""
+.. module:: rec_DAC.py
+   :platform: Unix
+   :synopsis: Reconstruct the DAC experiment data collected at the APS 32-ID TXM
+
+:Author:
+  `Francesco De Carlo <mailto: decarlof@gmail.com>`_
+
+:Organization:
+  Argonne National Laboratory, Argonne, IL 60439 USA
+
+"""
+# tomoPy: https://github.com/tomopy/tomopy
 import tomopy
 import numpy as np
 import matplotlib.pylab as pl
