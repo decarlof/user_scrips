@@ -34,7 +34,6 @@ file_name = '/local/prom04/vdeandrade/dataraid/2015_06/Anne/Wood_Joseph/Wood_S1_
 output_name = '/local/prom04/vdeandrade/dataraid/2015_06/Anne/Wood_Joseph/Wood_S1_360proj_1s_11800eV_9_recon/Wood_S1_360proj_1s_11800eV_9_recon_'
 best_center = 1238
 
-
 medfilt_size = 2
 perform_norm = 1 # 1 or 0 to apply or not a flat-field correction
 remove_stripe1 = 0 # 1 or 0 to apply or not the stripe removal algo based on wavelet transform
@@ -62,10 +61,10 @@ if 0:
     #                                               exchange_rank = ExchangeRank,
     #                                               slices_start=slice_first,
     #                                               slices_end=slice_first+1)
-    
+    exchange_rank = ExchangeRank
     data, white, dark = tomopy.io.exchange.read_aps_32id(file_name, 
-                                                        exchange_rank=ExchangeRank, 
-                                                        sino=(slice_first, slice_first+1))
+                                                        exchange_rank, 
+                                                        sino=(slice_first, slice_first+4))
 
     theta  = tomopy.angles(data.shape[0])
     
@@ -119,7 +118,7 @@ if 0:
 
 #### for the whole volume reconstruction
 if 1:
-    f = h5py.File(file_name, "r"); nProj, nslices, nCol = f["/exchange/data"].shape
+    f = h5py.File(file_name, "r"); nProj, nslices, nCol = f["/exchange3/data"].shape
     nslices_per_chunk = nslices/chunk
 
     for iChunk in range(0,chunk):
@@ -132,7 +131,7 @@ if 1:
         #                                               exchange_rank = ExchangeRank,
         #                                               slices_start=slice_first,
         #                                               slices_end=slice_last)
-        data, white, dark = tomopy.io.exchange.read_aps_32id(file_name, sino=(slice_first, slice_last))
+        data, white, dark = tomopy.io.exchange.read_aps_32id(file_name, exchange_rank=ExchangeRank, sino=(slice_first, slice_last))
         theta  = tomopy.angles(data.shape[0])
 
         print '\n  -- 1st & last slice: %i, %i' % (slice_first, slice_last)
