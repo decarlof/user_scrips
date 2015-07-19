@@ -37,34 +37,6 @@ def read_log(fname):
     print "flat", flat_start, flat_start + nflat
     print "dark", dark_start, dark_start + ndark
 
-    ind_tomo = range(prj_start, prj_start + nprj)
-    ind_flat = range(flat_start, flat_start + nflat)
-    ind_dark = range(dark_start, dark_start + ndark)
-
-def rec_test(file_name, sino_start, sino_end, best_center, output_name):
-
-    print '\n#### Processing '+ file_name
-    print "Test reconstruction of slice [%d]" % sino_start
-
-    # Read HDF5 file.
-    prj, flat, dark = tomopy.io.exchange.read_aps_32id(file_name, sino=(sino_start, sino_end))
-
-    # Manage the missing angles:
-    theta  = tomopy.angles(prj.shape[0], ang1=0.0, ang2=360.0)
-    
-    # normalize the prj
-    prj = tomopy.normalize(prj, flat, dark)
-    #calc_center = tomopy.find_center(prj, theta, emission=False, init=best_center, ind=0, tol=0.3)
-    print best_center, calc_center
-
-    # reconstruct 
-    rec = tomopy.recon(prj, theta, center=calc_center, algorithm='gridrec', emission=False)
-        
-    # Write data as stack of TIFs.
-    tomopy.io.writer.write_tiff_stack(rec, fname=output_name)
-
-    print "Slice saved as [%s_00000.tiff]" % output_name
-
 def rec_test_tiff(file_name, sino_start, sino_end, best_center, output_name):
 
     print '\n#### Processing '+ file_name
@@ -128,14 +100,6 @@ def main():
     file_name = '/local/dataraid/databank/templates/aps_1-ID/data_'
     output_name = '/local/dataraid/databank/templates/dataExchange/tmp/rec/CAT4B_2_tiff'
     best_center = 1026; sino_start = 1000; sino_end = 1004; 
-
-##    # these are correct per Peter discussion
-##    prj_start = 943
-##    prj_end = 1833
-##    flat_start = 1844
-##    flat_end = 1853
-##    dark_start = 1854
-##    dark_end = 1863
 
     read_log(file_name)
     rec_test_tiff(file_name, sino_start, sino_end, best_center, output_name)    
