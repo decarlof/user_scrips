@@ -77,7 +77,7 @@ def rec(file_name, sino_start, sino_end):
             # normalize the prj
             prj = tomopy.normalize(prj, flat, dark)
 
-            ncore  = 1
+            ncore  = 2
             while (ncore <= 24):
                 step_03 = time.time()
                 # reconstruct 
@@ -86,7 +86,7 @@ def rec(file_name, sino_start, sino_end):
                 step_04 = time.time()
                 step_04_delta = step_04 - step_03
                 print nSino_per_chunk, prj.shape[0], prj.shape[1], prj.shape[2], ncore, str(datetime.timedelta(seconds=int(step_04_delta))), int(step_04_delta)
-                ncore += 1            
+                ncore += 2            
             chunks +=20
 
     end_time = time.time()
