@@ -98,7 +98,7 @@ def rec_full(file_name, sino_start, sino_end):
             print "Normalize:    ", str(datetime.timedelta(seconds=int(step_03_delta))), int(step_03_delta)
             print "**********************"        
 
-            ncore  = 2
+            ncore  = 1
             while (ncore <= 24):
                 step_03 = time.time()
                 # reconstruct 
@@ -107,7 +107,7 @@ def rec_full(file_name, sino_start, sino_end):
                 step_04 = time.time()
                 step_04_delta = step_04 - step_03
                 print nSino_per_chunk, prj.shape[0], prj.shape[1], prj.shape[2], ncore, str(datetime.timedelta(seconds=int(step_04_delta))), int(step_04_delta)
-                ncore += 2
+                ncore += 1
 
             #step_04 = time.time()
             #step_04_delta = step_04 - step_03
