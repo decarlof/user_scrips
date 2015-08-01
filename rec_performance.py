@@ -141,7 +141,7 @@ def rec_full(file_name, sino_start, sino_end):
 reconstruction_test = False
 
 ##################################### Inputs ##########################################################
-file_name = '/local/dataraid/databank/templates/aps_2-BM/hdf5/proj_10.hdf' # best_center = 1232
+file_name = '/local/decarlo/data/proj_10.hdf' # best_center = 1232
 output_name = './recon/proj10_rec'
 best_center = 1298; sino_start = 0; sino_end = 2560;
 if reconstruction_test: rec_test(file_name, sino_start, sino_end)
