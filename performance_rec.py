@@ -10,8 +10,8 @@ sino_start = 200
 
 nsino  = 128
 while (nsino >= 32):
-    ncore = 24 
-    while (ncore >= 2):
+    ncore = 1 
+    while (ncore <= 24):
         # Read HDF5 file.
         prj, flat, dark = tomopy.io.exchange.read_aps_32id(file_name, sino=(sino_start, sino_start+nsino))
 
@@ -33,7 +33,7 @@ while (nsino >= 32):
         step_02 = time.time()
         step_02_delta = step_02 - step_01
         print prj.shape[1], prj.shape[2], prj.shape[0], ncore, str(datetime.timedelta(seconds=int(step_02_delta))), int(step_02_delta)
-        ncore -= 1
+        ncore += 1
         #tomopy.io.writer.write_tiff_stack(rec, fname=output_name)        
     nsino /= 2
 
