@@ -10,7 +10,6 @@ python performance_rec_full.py -c 16 -s 128
 python performance_rec_full.py -c 15 -s 128
 python performance_rec_full.py -c 14 -s 128
 python performance_rec_full.py -c 13 -s 128
-python performance_rec_full.py -c 12 -s 128
 python performance_rec_full.py -c 11 -s 128
 python performance_rec_full.py -c 10 -s 128
 python performance_rec_full.py -c 9 -s 128

@@ -45,16 +45,16 @@ def main(argv):
 
         step_02 = time.time()
         step_02_delta = step_02 - step_01
-        print sino_start, sino_start+nsino, prj.shape[1], prj.shape[2], prj.shape[0], ncore, str(datetime.timedelta(seconds=int(step_02_delta))), int(step_02_delta)
+        #print sino_start, sino_start+nsino, prj.shape[1], prj.shape[2], prj.shape[0], ncore, str(datetime.timedelta(seconds=int(step_02_delta))), int(step_02_delta)
         #tomopy.io.writer.write_tiff_stack(rec, fname=output_name)   
         step_02_delta_total += step_02_delta     
         sino_start += nsino
         count += 1
     step_03 = time.time()    
     step_03_delta = step_03 - step_00
-    print "*", count * prj.shape[1], prj.shape[2], prj.shape[0], ncore, str(datetime.timedelta(seconds=int(step_02_delta_total))), int(step_02_delta_total)
-    print "*", count * prj.shape[1], prj.shape[2], prj.shape[0], ncore, str(datetime.timedelta(seconds=int(step_03_delta - step_02_delta_total))), int(step_03_delta - step_02_delta_total)
-    print "*", count * prj.shape[1], prj.shape[2], prj.shape[0], ncore, str(datetime.timedelta(seconds=int(step_03_delta))), int(step_03_delta)
+    print count * prj.shape[1], prj.shape[2], prj.shape[0], ncore, str(datetime.timedelta(seconds=int(step_02_delta_total))), int(step_02_delta_total)
+    print count * prj.shape[1], prj.shape[2], prj.shape[0], ncore, str(datetime.timedelta(seconds=int(step_03_delta - step_02_delta_total))), int(step_03_delta - step_02_delta_total)
+    print count * prj.shape[1], prj.shape[2], prj.shape[0], ncore, str(datetime.timedelta(seconds=int(step_03_delta))), int(step_03_delta)
 
 if __name__ == "__main__":   main(sys.argv[1:])
    
