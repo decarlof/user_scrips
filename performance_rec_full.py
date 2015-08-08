@@ -52,9 +52,9 @@ def main(argv):
         count += 1
     step_03 = time.time()    
     step_03_delta = step_03 - step_00
-    print count * prj.shape[1], prj.shape[2], prj.shape[0], ncore, str(datetime.timedelta(seconds=int(step_02_delta_total))), int(step_02_delta_total)
-    print count * prj.shape[1], prj.shape[2], prj.shape[0], ncore, str(datetime.timedelta(seconds=int(step_03_delta - step_02_delta_total))), int(step_03_delta - step_02_delta_total)
-    print count * prj.shape[1], prj.shape[2], prj.shape[0], ncore, str(datetime.timedelta(seconds=int(step_03_delta))), int(step_03_delta)
+    print count * prj.shape[1], prj.shape[2], prj.shape[0], ncore, nsino, str(datetime.timedelta(seconds=int(step_02_delta_total))), int(step_02_delta_total)
+    #print count * prj.shape[1], prj.shape[2], prj.shape[0], ncore, nsino, str(datetime.timedelta(seconds=int(step_03_delta - step_02_delta_total))), int(step_03_delta - step_02_delta_total)
+    #print count * prj.shape[1], prj.shape[2], prj.shape[0], ncore, nsino, str(datetime.timedelta(seconds=int(step_03_delta))), int(step_03_delta)
 
 if __name__ == "__main__":   main(sys.argv[1:])
    
