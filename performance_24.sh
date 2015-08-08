@@ -11,7 +11,6 @@ python performance_rec_full.py -c 15 -s 128
 python performance_rec_full.py -c 14 -s 128
 python performance_rec_full.py -c 13 -s 128
 python performance_rec_full.py -c 11 -s 128
-python performance_rec_full.py -c 10 -s 128
 python performance_rec_full.py -c 9 -s 128
 python performance_rec_full.py -c 8 -s 128
 python performance_rec_full.py -c 7 -s 128
@@ -30,7 +29,6 @@ python performance_rec_full.py -c 19 -s 64
 python performance_rec_full.py -c 18 -s 64
 python performance_rec_full.py -c 17 -s 64
 python performance_rec_full.py -c 16 -s 64
-python performance_rec_full.py -c 15 -s 64
 python performance_rec_full.py -c 14 -s 64
 python performance_rec_full.py -c 13 -s 64
 python performance_rec_full.py -c 12 -s 64
@@ -39,13 +37,11 @@ python performance_rec_full.py -c 10 -s 64
 python performance_rec_full.py -c 9 -s 64
 python performance_rec_full.py -c 8 -s 64
 python performance_rec_full.py -c 7 -s 64
-python performance_rec_full.py -c 6 -s 64
 python performance_rec_full.py -c 5 -s 64
 python performance_rec_full.py -c 4 -s 64
 python performance_rec_full.py -c 3 -s 64
 python performance_rec_full.py -c 2 -s 64
 python performance_rec_full.py -c 1 -s 64
-python performance_rec_full.py -c 24 -s 32
 python performance_rec_full.py -c 23 -s 32
 python performance_rec_full.py -c 22 -s 32
 python performance_rec_full.py -c 21 -s 32
