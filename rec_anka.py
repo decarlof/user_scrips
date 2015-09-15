@@ -24,7 +24,7 @@ start = 800
 end = 804
 
 # Read the APS 1-ID raw data.
-proj, flat, dark = tomopy.io.exchange.read_anka_tomotopo(fname, ind_tomo, ind_flat, ind_dark, sino=(start, end))
+proj, flat, dark = tomopy.io.exchange.read_anka_topotomo(fname, ind_tomo, ind_flat, ind_dark, sino=(start, end))
 
 # Set data collection angles as equally spaced between 0-180 degrees.
 theta  = tomopy.angles(proj.shape[0], 0, 180)
