@@ -86,7 +86,7 @@ if astra_method=='SIRT-FBP':
 
 ##################################### Inputs ##########################################################
 file_name = '/local/dataraid/2014_11/haozhe/Ce6Al4_3kbar_.h5' # best_center = 1232
-output_name = '/local/dataraid/2014_11/haozhe/rec/Ce6Al4_3kbar/Ce6Al4_3kbar_rec'
+output_name = 'local/dataraid/2014_11/haozhe/rec/Ce6Al4_3kbar/Ce6Al4_3kbar_rec'
 best_center = 1232; sino_start = 740; sino_end = 1700; miss_angles = [141,226]
 if reconstruction_test: rec_test(file_name, sino_start, sino_end, astra_method, extra_options, num_iter)
 else: rec_full(file_name, sino_start, sino_end, astra_method, extra_options, num_iter)
