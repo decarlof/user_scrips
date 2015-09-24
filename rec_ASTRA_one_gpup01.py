@@ -4,46 +4,38 @@ import numpy as np
 import time, datetime
 
 proj_type='cuda'
+reduce_amount=1
 
 def rec_test(file_name, sino_start, sino_end, astra_method, extra_options, num_iter=1):
 
     print '\n#### Processing '+ file_name
+    sino_start = sino_start + 200
+    sino_end = sino_start + 2
     print "Test reconstruction of slice [%d]" % sino_start
     # Read HDF5 file.
     prj, flat, dark = tomopy.io.exchange.read_aps_32id(file_name, sino=(sino_start, sino_end))
 
     # Manage the missing angles:
     theta  = tomopy.angles(prj.shape[0])
-#    prj = np.concatenate((prj[0:miss_angles[0],:,:], prj[miss_angles[1]+1:-1,:,:]), axis=0)
-#    theta = np.concatenate((theta[0:miss_angles[0]], theta[miss_angles[1]+1:-1]))
-    prj = prj[miss_angles[0]:miss_angles[1],:,:]
-    theta = theta[miss_angles[0]:miss_angles[1]]
+    prj = np.concatenate((prj[0:miss_angles[0],:,:], prj[miss_angles[1]+1:-1,:,:]), axis=0)
+    theta = np.concatenate((theta[0:miss_angles[0]], theta[miss_angles[1]+1:-1]))
 
     # normalize the prj
     prj = tomopy.normalize(prj, flat, dark)
     
     # remove ring artefacts
     prj = tomopy.remove_stripe_fw(prj)
-    
-    # Median filter:
-    if medfilt_size:
-        prj = tomopy.median_filter(prj,size=medfilt_size)
-
-    if level>0:
-        prj = tomopy.downsample(prj, level=level)
 
     # reconstruct 
-    rec = tomopy.recon(prj, theta, center=best_center/pow(2,level), algorithm=tomopy.astra, options={'proj_type':proj_type,'method':astra_method,'extra_options':extra_options,'num_iter':num_iter}, emission=False)
-    
+    rec = tomopy.recon(prj[:,::reduce_amount,::reduce_amount], theta, center=float(best_center)/reduce_amount, algorithm=tomopy.astra, options={'proj_type':proj_type,'method':astra_method,'extra_options':extra_options,'num_iter':num_iter}, emission=False)
+        
     # Write data as stack of TIFs.
     tomopy.io.writer.write_tiff_stack(rec, fname=output_name)
 
     print "Slice saved as [%s_00000.tiff]" % output_name
     
-    
 def rec_full(file_name, sino_start, sino_end, astra_method, extra_options, num_iter=1):
 
-    start_time = time.time()
     print '\n#### Processing '+ file_name
 
     chunks = 10 # number of data chunks for the reconstruction
@@ -65,10 +57,8 @@ def rec_full(file_name, sino_start, sino_end, astra_method, extra_options, num_i
 
         # Manage the missing angles:
         theta  = tomopy.angles(prj.shape[0])
-#        theta = np.concatenate((theta[0:miss_angles[0]], theta[miss_angles[1]+1:-1]))
-#        theta = np.concatenate((theta[0:miss_angles[0]], theta[miss_angles[1]+1:-1]))
-        prj = prj[miss_angles[0]:miss_angles[1],:,:]
-        theta = theta[miss_angles[0]:miss_angles[1]]
+        prj = np.concatenate((prj[0:miss_angles[0],:,:], prj[miss_angles[1]+1:-1,:,:]), axis=0)
+        theta = np.concatenate((theta[0:miss_angles[0]], theta[miss_angles[1]+1:-1]))
 
         # normalize the prj
         prj = tomopy.normalize(prj, flat, dark)
@@ -76,26 +66,14 @@ def rec_full(file_name, sino_start, sino_end, astra_method, extra_options, num_i
         # remove ring artefacts
         prj = tomopy.remove_stripe_fw(prj)
 
-        # Median filter:
-        if medfilt_size:
-            prj = tomopy.median_filter(prj,size=medfilt_size)
-        
-
-        if level>0:
-            prj = tomopy.downsample(prj, level=level)
-            prj = tomopy.downsample(prj, level=level, axis=1)
-        
         # reconstruct 
-        rec = tomopy.recon(prj, theta, center=best_center/pow(2,level), algorithm=tomopy.astra, options={'proj_type':proj_type,'method':astra_method,'extra_options':extra_options,'num_iter':num_iter}, emission=False)
+        rec = tomopy.recon(prj[:,::reduce_amount,::reduce_amount], theta, center=float(best_center)/reduce_amount, algorithm=tomopy.astra, options={'proj_type':proj_type,'method':astra_method,'extra_options':extra_options,'num_iter':num_iter}, emission=False)
         
         print output_name
 
         # Write data as stack of TIFs.
         tomopy.io.writer.write_tiff_stack(rec, fname=output_name, start=strt)
-        strt += prj.shape[1]
-
-    print("%i minutes" % (time.time() - start_time)/60)
-
+        strt += prj[:,::reduce_amount,:].shape[1]
 
 reconstruction_test = False
 import astra
